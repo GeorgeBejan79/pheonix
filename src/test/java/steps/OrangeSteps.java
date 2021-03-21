@@ -1,5 +1,4 @@
 package steps;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,9 +11,7 @@ import pages.HomePage;
 import pages.PageBase;
 import utils.ConfigReader;
 import utils.Driver;
-
 import java.util.concurrent.TimeUnit;
-
 public class OrangeSteps {
     WebDriver driver;
     HomePage homepage;
@@ -72,8 +69,10 @@ public class OrangeSteps {
             // pageBase.descendingNames.get(i+1)
             JavascriptExecutor js=(JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0,document.body.scrollHeight/2)");
-                Assert.assertTrue(pageBase.descendingNames.get(i).getText().charAt(0)>=
-                        pageBase.descendingNames.get(i+1).getText().charAt(0));
+            System.out.println(pageBase.descendingNames.get(i).getText().charAt(0) + " "+ pageBase.descendingNames.get(i+1).getText().charAt(0));
+            System.out.println("============================================");
+                Assert.assertTrue(pageBase.descendingNames.get(i).getText().trim().charAt(0)>=
+                        pageBase.descendingNames.get(i+1).getText().trim().charAt(0));
             }
 
         }
