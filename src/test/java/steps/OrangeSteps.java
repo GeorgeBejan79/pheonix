@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import pages.AddUserPage;
 import pages.HomePage;
 import pages.PageBase;
 import utils.ConfigReader;
@@ -16,7 +18,9 @@ public class OrangeSteps {
     WebDriver driver;
     HomePage homepage;
     PageBase pageBase;
+    AddUserPage addUserPage;
     Actions actions;
+    Select select;
 
     @Given("the user navigates to url")
     public void the_user_navigates_to_https_opensource_demo_orangehrmlive_com_index_php_auth_login() {
@@ -76,7 +80,44 @@ public class OrangeSteps {
             }
 
         }
+        @Then("user create a new record")
+        public void user_create_a_new_record() {
+            addUserPage=new AddUserPage(driver);
+            addUserPage.addButton.click();
 
+    }
+
+    @When("the user select user role")
+    public void the_user_select_user_role() {
+        select=new Select(addUserPage.userRole);
+        select.selectByIndex(0);
+    }
+    @When("select {string}")
+    public void select(String employeeName) {
+     addUserPage.employeeName.sendKeys(employeeName);
+    }
+    @When("the user Enter {string}")
+    public void the_user_enter(String username) {
+        addUserPage.userName.sendKeys(username);
+    }
+    @When("the user Select status")
+    public void the_user_select_status() {
+        select=new Select(addUserPage.status);
+        select.selectByVisibleText("Enabled");
+    }
+    @When("the user Enter the {string} and {string}")
+    public void the_user_enter_the_and(String password, String confirmPassword) {
+        addUserPage.password.sendKeys(password);
+        addUserPage.confirmPassword.sendKeys(confirmPassword);
+    }
+    @When("the user Click Save button")
+    public void the_user_click_save_button() {
+       addUserPage.saveButton.click();
+    }
+    @When("the user Validate {string} message")
+    public void the_user_validate_message(String string) {
+
+    }
     }
 
 

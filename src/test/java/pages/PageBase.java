@@ -23,4 +23,6 @@ public class PageBase {
 
     @FindBy(xpath = "//tbody//tr")
     public List<WebElement> descendingNames;
+
+
 }
